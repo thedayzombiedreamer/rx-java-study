@@ -1,4 +1,4 @@
-package io.rx.study.ch3;
+package io.rx.study.ch3.interaction.plural;
 
 
 import io.reactivex.Observable;
@@ -11,7 +11,40 @@ import java.util.concurrent.TimeUnit;
  */
 public class ZipOperator {
     public static void main(String[] args) throws InterruptedException {
-        zip4_combineLatest();
+        zip6_withLatestFrom_Dummy();
+
+        TimeUnit.SECONDS.sleep(5);
+    }
+
+    private static void zip7_startWith() {
+        Observable.just(1, 2)
+                .delay(100, TimeUnit.MILLISECONDS)
+                .startWith(0)
+                .subscribe(System.out::println);
+    }
+
+    private static void zip6_withLatestFrom_Dummy() {
+        Observable<String> fast = Observable.interval(10, TimeUnit.MILLISECONDS)
+                .map(x -> "F" + x)
+                .delay(100, TimeUnit.MILLISECONDS)
+                .startWith("FX");
+
+        Observable<String> slow = Observable.interval(1000, TimeUnit.MILLISECONDS).map(x -> "S" + x);
+
+        slow
+                .withLatestFrom(fast, (s, f) -> s + ":" + f)
+                .forEach(System.out::println);
+    }
+
+    private static void zip5withLatestFrom() throws InterruptedException {
+        Observable<String> fast = Observable.interval(10, TimeUnit.MILLISECONDS).map(x -> "F" + x);
+        Observable<String> slow = Observable.interval(1000, TimeUnit.MILLISECONDS).map(x -> "S" + x);
+
+        slow
+                .withLatestFrom(fast, (s, f) -> s + ":" + f)
+                .forEach(System.out::println);
+
+        TimeUnit.SECONDS.sleep(5);
     }
 
     private static void zip4_combineLatest() throws InterruptedException {
@@ -37,7 +70,7 @@ public class ZipOperator {
         TimeUnit.SECONDS.sleep(5);
     }
 
-    private static void delay2_flightExample() {
+    private static void zip2_flightExample() {
         Observable<LocalDate> nextTenDays = Observable
                 .range(1, 10)
                 .map(i -> LocalDate.now().plusDays(i));
@@ -94,7 +127,7 @@ public class ZipOperator {
         NewYork
     }
 
-    private static void zip1_oneToOne() {
+    private static void zip1_oneToOne_Chess() {
         Observable<Integer> oneToEight = Observable.range(1, 8);
 
         Observable<String> ranks = oneToEight

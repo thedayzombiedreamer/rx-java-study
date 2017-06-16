@@ -1,4 +1,4 @@
-package io.rx.study.ch3;
+package io.rx.study.ch3.interaction.basic;
 
 import io.reactivex.Observable;
 

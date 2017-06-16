@@ -1,4 +1,4 @@
-package io.rx.study.ch3;
+package io.rx.study.ch3.interaction.basic;
 
 import com.google.common.collect.Lists;
 import io.reactivex.Observable;

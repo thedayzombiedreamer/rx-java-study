@@ -1,4 +1,4 @@
-package io.rx.study.ch3;
+package io.rx.study.ch3.interaction.basic;
 
 import static io.reactivex.Observable.empty;
 import static io.reactivex.Observable.just;

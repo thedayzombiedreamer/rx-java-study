@@ -1,4 +1,4 @@
-package io.rx.study.ch3;
+package io.rx.study.ch3.interaction.basic;
 
 import io.reactivex.Observable;
 
@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class DelayOperator {
     public static void main(String[] args) throws InterruptedException {
+        delay3_flippedOrder();
+
         TimeUnit.SECONDS.sleep(15);
     }
 
